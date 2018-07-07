@@ -18,9 +18,9 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.gender }}</td>
                     <td>
-                    <a href="edit.html">edit</a>
-                    &nbsp;&nbsp;
-                    <a href="javascript:window.confirm('Are you sure?')">delete</a>
+                        <a href="edit.html">编辑</a>
+                        &nbsp;&nbsp;
+                        <a href="#" @click.prevent="handleDelete(item.id)">删除</a>
                     </td>
                 </tr>
                 </tbody>
@@ -42,12 +42,29 @@
         },
         methods: {
             loadData() {
-                axios('http://localhost:3000/heroes')
+                axios.get('http://localhost:3000/heroes')
                 .then((res) => {
                     console.log(res);
                     if (res.status ===200) {
                         this.list = res.data;
                     }
+                })
+            },
+            handleDelete(id) {
+                if (!confirm('确定删除吗？')) {
+                        return;
+                    }
+                axios.delete('http://localhost:3000/heroes/' + id)
+                .then((res) => {
+                    
+                    if (res.status === 200) {
+                        this.loadData();
+                    } else {
+                        alert('删除失败');
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
                 })
             }
         }
