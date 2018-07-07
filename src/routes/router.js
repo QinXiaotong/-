@@ -3,9 +3,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 // 导入组件
-import HeroList from '../views/heroes/List.vue';
+import heroList from '../views/heroes/List.vue';
 import weaponList from '../views/weapons/List.vue';
 import equipList from '../views/equips/List.vue';
+import addHero from '../views/heroes/Add.vue';
 
 // 注册插件
 Vue.use(VueRouter);
@@ -16,9 +17,10 @@ const router = new VueRouter({
     linkActiveClass: 'active',
     routes: [
         {name: 'home', path: '/', redirect: '/heroes'},
-        {name: 'heroes', path: '/heroes', component: HeroList},
+        {name: 'heroes', path: '/heroes', component: heroList},
         {name: 'weapons', path: '/weapons', component: weaponList},
         {name: 'equips', path: '/equips', component: equipList},
+        {name: 'addHero', path: '/heroes/addHero', component: addHero},
     ]
 })
 
