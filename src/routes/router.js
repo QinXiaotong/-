@@ -7,7 +7,7 @@ import heroList from '../views/heroes/List.vue';
 import weaponList from '../views/weapons/List.vue';
 import equipList from '../views/equips/List.vue';
 import addHero from '../views/heroes/Add.vue';
-
+import editHero from '../views/heroes/Edit.vue';
 // 注册插件
 Vue.use(VueRouter);
 
@@ -21,6 +21,7 @@ const router = new VueRouter({
         {name: 'weapons', path: '/weapons', component: weaponList},
         {name: 'equips', path: '/equips', component: equipList},
         {name: 'addHero', path: '/heroes/addHero', component: addHero},
+        {name: 'editHero', path: '/heroes/edit/:id', component: editHero},
     ]
 })
 
