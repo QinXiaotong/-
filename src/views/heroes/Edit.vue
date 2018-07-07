@@ -10,7 +10,7 @@
             <label for="sex">英雄性别</label>
             <input v-model="formData.gender" class="form-control" id="sex" placeholder="Sex">
           </div>
-          <button @click.prevent="handleAdd" type="submit" class="btn btn-success">修改英雄</button>
+          <button @click.prevent="handleEdit" type="submit" class="btn btn-success">修改英雄</button>
         </form>
     </div>
 </template>
@@ -36,6 +36,17 @@ import axios from 'axios';
                 .then((res) => {
                     if (res.status === 200) {
                         this.formData = res.data;
+                    }
+                })
+            },
+            handleEdit() {
+                axios.put('http://localhost:3000/heroes/' + this.heroId, this.formData)
+                .then((res) => {
+                    const{status, data} = res;
+                    if (status === 200) {
+                        this.$router.push('/heroes');
+                    } else {
+                        alert('网络繁忙，请稍后再试')
                     }
                 })
             }
